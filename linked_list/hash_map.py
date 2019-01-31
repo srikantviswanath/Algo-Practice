@@ -53,6 +53,7 @@ class HashMap(object):
         found_node = self.traverse_chain(head, key)
         if found_node:
             return found_node.value
+        raise KeyError
 
     def traverse_chain(self, head, key):
         while head:
@@ -100,7 +101,6 @@ class TestHashMap(unittest.TestCase):
         with self.assertRaises(KeyError):
             map.get('vankai')
 
-
     def test_update_key(self):
         map = HashMap()
         map.put('vankai', 'koora')
@@ -108,6 +108,13 @@ class TestHashMap(unittest.TestCase):
         map.put('velakkai', 'pacchadi')
         map.put('vankai', 'pulusu')
         self.assertEqual(map.get('vankai'), 'pulusu')
+
+    def test_key_absent_after_linkedList_traversal(self):
+        map = HashMap()
+        map.put('vankai', 'koora')
+        map.put('velakai', 'pachadi')
+        with self.assertRaises(KeyError):
+            map.get('vepaku')
 
 
 if __name__ == '__main__':
