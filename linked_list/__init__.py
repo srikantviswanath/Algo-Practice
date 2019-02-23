@@ -11,6 +11,14 @@ class LLNode(object):
         return str(self)
 
 
+class DoubleLLNode(LLNode):
+
+    def __init__(self, key, val):
+        super(DoubleLLNode, self).__init__(val)
+        self.prev = None
+        self.key = key
+
+
 def create_LL(data_list):
     head = LLNode()
     curr = head
