@@ -43,6 +43,18 @@ def listify_LL(head):
     return list_
 
 
+def reverse_LL(head):
+    if not head:
+        return
+    prev = None
+    while head:
+        ahead = head.next
+        head.next = prev
+        prev = head
+        head = ahead
+    return prev
+
+
 if __name__ == '__main__':
     head = create_LL([1, 2, 3, 4, 5, 6])
     print(listify_LL(head))
