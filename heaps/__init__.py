@@ -75,7 +75,8 @@ class Heap(object):  # implementing a min heap for now. Will extend this to max 
             self.sink(0)
             return to_return
 
-    def peek(self):
+    @property
+    def min(self):
         return self.array[0]
 
     def heapify(self):
