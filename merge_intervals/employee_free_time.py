@@ -1,6 +1,6 @@
 from heaps import Heap
 from typing import List
-
+import heapq
 
 class Interval(object):
     def __init__(self, start_time: int, end_time: int):
@@ -42,17 +42,18 @@ class EmployeeTimeSlot(object):
 def find_employee_free_time(employee_working_times: List[List[Interval]]) -> List[Interval]:
     if not employee_working_times:
         return []
-    min_heap = Heap([
+    min_heap = [
         EmployeeTimeSlot(employee_index, 0, times[0])
         for employee_index, times in enumerate(employee_working_times)
-    ])
-    min_heap.heapify()
-    running_busy_interval: Interval = min_heap.min.interval
+    ]
+    heapq.heapify(min_heap)
+    running_busy_interval: Interval = min_heap[0].interval
     free_times = []
     while min_heap:
-        next_free: EmployeeTimeSlot = min_heap.pop()
+        next_free: EmployeeTimeSlot = heapq.heappop(min_heap)
         if next_free.time_slot_index < len(employee_working_times[next_free.employee_index]) - 1:
-            min_heap.push(
+            heapq.heappush(
+                min_heap,
                 EmployeeTimeSlot(next_free.employee_index, next_free.time_slot_index + 1,
                                  interval=employee_working_times[next_free.employee_index][next_free.time_slot_index + 1])
 
@@ -67,7 +68,6 @@ def find_employee_free_time(employee_working_times: List[List[Interval]]) -> Lis
 
 if __name__ == '__main__':
     print(find_employee_free_time([
-        [Interval(1, 3), Interval(5, 7), Interval(9, 10)],
-        [Interval(4, 6)],
-        [Interval(2, 4), Interval(6, 8), Interval(9, 10)]
+        [Interval(1, 3), Interval(9, 12)],
+        [Interval(2, 4), Interval(6, 8)]
     ]))
