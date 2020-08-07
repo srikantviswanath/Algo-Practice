@@ -69,6 +69,7 @@ def print_pre_order(root):
     print_pre_order(root.left)
     print_pre_order(root.right)
 
+
 if __name__ == '__main__':
     level_ordered_str = [10, 7, 8, 6, None, 2, 3, None, None, None, None, 4]
     root = build_binary_tree(level_ordered_str)

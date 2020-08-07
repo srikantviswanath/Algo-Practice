@@ -1,8 +1,10 @@
 from trees import print_level_order, build_binary_tree
 
+
 def diameter(root):
     if not root:
         return 0
+
     def helper(node):
         if not node:
             return -1, -1
