@@ -15,6 +15,11 @@ class TreeNode(object):
         return str(self)
 
 
+
+def is_leaf_node(node: TreeNode):
+    return not node.left and not node.right
+
+
 def build_binary_tree(level_order_nodes):
     """
     Given a list of nodes in level order, from left to right - build a binary tree
