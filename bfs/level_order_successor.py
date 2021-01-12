@@ -13,16 +13,16 @@ class TreeNodeWithNext(object):
 def print_level_order(root):
     nextLevelRoot = root
     while nextLevelRoot:
-      current = nextLevelRoot
-      nextLevelRoot = None
-      while current:
-        print(str(current.val) + " ", end='')
-        if not nextLevelRoot:
-          if current.left:
-            nextLevelRoot = current.left
-          elif current.right:
-            nextLevelRoot = current.right
-        current = current.next
+        current = nextLevelRoot
+        nextLevelRoot = None
+        while current:
+            print(str(current.val) + " ", end='')
+            if not nextLevelRoot:
+                if current.left:
+                    nextLevelRoot = current.left
+                elif current.right:
+                    nextLevelRoot = current.right
+            current = current.next
 
 
 def connect_successor(root: TreeNode) -> None:
